@@ -1,8 +1,7 @@
 datecalc-go
 ========
-######v1.0.0
 
-datecalc is created by Violet (http://pariahvi.com) and is licensed under a BSD License. Read LICENSE.txt for more license text.
+datecalc is created by PariahVi (http://pariahvi.com) and is licensed under a BSD License. Read LICENSE.txt for more license text.
 
 Go library to calculate the day of the week of any date
 
@@ -10,7 +9,9 @@ Go library to calculate the day of the week of any date
 * Go
 
 ####Using the Library
-To calculate the day of the week for any date, use *datecalc.date(y, m, d, t)* where y is the full year (a negative integer for BC years), m is the month number, d is the day number, and type is the calendar type.  The calendar types you have to chose from are:
+func Date(year int, month, date int8, calType string) (day string, err error)
+
+To calculate the day of the week for any date, use *datecalc.Date(y, m, d, t)* where y is the full year (a negative integer for BC years), m is the month number, d is the day number, and type is the calendar type.  The calendar types you have to chose from are:
 * English
 * Roman
 * Gregorian
@@ -36,19 +37,13 @@ func main() {
     fmt.Println(datecalc.Date(-2014, 3, 14, "English"))
     fmt.Println(datecalc.Date(-2014, 3, 14, "Julian"))
     fmt.Println(datecalc.Date(2014, 3, 14, "Julian"))
-    fmt.Println(datecalc.Date(204727298871375019846193105719886136647191237731911139435, 3, 14, "Julian"))
-    fmt.Println(datecalc.Date(-204727298871375019846193105719886136647191237731911139435, 3, 14, "English"))
 }
-
 ```
 prints out:
 ```
 Friday
 Friday
-Friday
 Wedneday
 Wedneday
 Thursday
-Monday
-Saturday
 ```
