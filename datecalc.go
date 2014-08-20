@@ -4,11 +4,12 @@
 
 // A Library to Calculate the Day of the Week of Any Date
 
-// Version 1.0.3.0
+// Version 1.0.3.2
 
 package datecalc
 
 import (
+    "fmt"
     "errors"
     "strconv"
     "strings"
@@ -138,7 +139,8 @@ func addxxYY(year int, calType string) int8 {
     if calType != "CE" && year < 0 {
         newYear = (((year + 1) % 100) + 100) % 100
     }
-    return  int8((((newYear / 12 + (((newYear % 12) + 12) % 12) + ((((newYear % 12) / 12) % 12) / 4)) % 7) + 7) % 7)
+    return int8((((newYear / 12 + (((newYear % 12) + 12) % 12) +
+	        ((((newYear % 12) + 12) % 12) / 4)) % 7) + 7) % 7)
 }
 
 // Returns value calculated from every digit of the year besides the last 2
@@ -235,7 +237,9 @@ func addYYxx(year int, month, date int8, calType string) int8{
 }
 
 // Add value calculated from the year.
-func addYear(year int, month, date int8, calType string) int8{
+func addYear(year int, month, date int8, calType string) int8 {
+    fmt.Println(addYYxx(year, month, date, calType))
+    fmt.Println(addxxYY(year, calType))
     return addYYxx(year, month, date, calType) + addxxYY(year, calType)
 }
 
