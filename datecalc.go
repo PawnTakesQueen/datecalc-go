@@ -163,7 +163,7 @@ func addxxYY(year int, calType string) int8 {
         newYear = (((year + 1) % 100) + 100) % 100
     }
     return int8((((newYear / 12 + (((newYear % 12) + 12) % 12) +
-	        ((((newYear % 12) + 12) % 12) / 4)) % 7) + 7) % 7)
+                ((((newYear % 12) + 12) % 12) / 4)) % 7) + 7) % 7)
 }
 
 /*
