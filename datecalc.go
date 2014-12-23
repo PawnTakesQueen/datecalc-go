@@ -26,7 +26,7 @@
  
 /* A Library to Calculate the Day of the Week of Any Date */
 
-/* Version 1.0.3.4 */
+/* Version 1.0.3.5 */
 
 package datecalc
 
@@ -37,16 +37,18 @@ import (
 )
 
 var days []string = []string{
-    "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday",
+    "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday",
+    "Saturday",
 }
 var calTypes []string = []string{
     "GREGORIAN", "CE", "JULIAN", "ENGLISH", "ROMAN",
 }
 var monthNames []string = []string{
-    "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December",
+    "January", "February", "March", "April", "May", "June", "July", "August",
+    "September", "October", "November","December",
 }
 
-// See if x is in range min, max
+/* See if x is in range min, max */
 func inRange(x, min, max int8) bool {
     for i := min; i < max; i ++ {
         if i == x {
@@ -56,7 +58,7 @@ func inRange(x, min, max int8) bool {
     return false
 }
 
-// Figure out if leap year for CE style dates.
+/* Figure out if leap year for CE style dates. */
 func ceLeapYear(y int) bool {
     if y % 100 == 0 {
         if y % 400 == 0 {
@@ -67,7 +69,7 @@ func ceLeapYear(y int) bool {
     }
     return false
 }
-// Figure out if leap year for Julian style dates.
+/* Figure out if leap year for Julian style dates. */
 func julLeapYear(y int) bool {
     if y < 0 {
         y = (((y + 1) % 700) + 700) % 700
@@ -78,7 +80,7 @@ func julLeapYear(y int) bool {
     return false
 }
 
-// Figure out if year is a leap year for cal_type.
+/* Figure out if year is a leap year for cal_type. */
 func isLeapYear(year int, calType string) bool {
     if calType == "GREGORIAN" {
         newYear := year
@@ -106,7 +108,7 @@ func isLeapYear(year int, calType string) bool {
     return false
 }
 
-// Check if the date (year, month, date) exists in cal_type.
+/* Check if the date (year, month, date) exists in cal_type. */
 func isRealDate(year int, month, date int8, calType string) bool {
     month30 := []int8{4, 6, 9, 11}
     if inRange(month, 1, 13) == false {
@@ -154,7 +156,7 @@ func isRealDate(year int, month, date int8, calType string) bool {
     return true
 }
 
-// Figures out value to add from last two digits of year.
+/* Figures out value to add from last two digits of year. */
 func addxxYY(year int, calType string) int8 {
     newYear := ((year % 100) + 100) % 100
     if calType != "CE" && year < 0 {
@@ -164,8 +166,10 @@ func addxxYY(year int, calType string) int8 {
 	        ((((newYear % 12) + 12) % 12) / 4)) % 7) + 7) % 7)
 }
 
-// Returns value calculated from every digit of the year besides the last 2
-// digits for CE style dates.
+/*
+ * Returns value calculated from every digit of the year besides the last 2
+ * digits for CE style dates.
+ */
 func ceAddYYxx(y int) int8 {
     YYxx := []int8{2, 0, 5, 3}
     return YYxx[(((y / 100) % 4) + 4) % 4]
@@ -177,8 +181,10 @@ func julAddYYxx(y int) int8 {
     return int8((((7 - y / 100) % 7) + 7) % 7)
 }
 
-// Figures out value to add from every digit of the year besides the last 2
-// digits.
+/*
+ * Figures out value to add from every digit of the year besides the last 2
+ * digits.
+ */
 func addYYxx(year int, month, date int8, calType string) int8{
     if calType == "GREGORIAN" {
         newYear := year
@@ -257,12 +263,12 @@ func addYYxx(year int, month, date int8, calType string) int8{
     return 0
 }
 
-// Add value calculated from the year.
+/* Add value calculated from the year. */
 func addYear(year int, month, date int8, calType string) int8 {
     return addYYxx(year, month, date, calType) + addxxYY(year, calType)
 }
 
-// Add value for the month based on the year and cal_type.
+/* Add value for the month based on the year and cal_type. */
 func addMonth(year int, month int8, calType string) int8 {
     monthOffsetKey := []int8{0, 0, 0, 3, 5, 1, 3, 6, 2, 4, 0, 2}
     monthOffset := make([][]int8, 12)
@@ -281,7 +287,10 @@ func addMonth(year int, month int8, calType string) int8 {
     return monthOffset[month - 1][0]
 }
 
-// Returns the day of the week or raises error if a date can't be calculated.
+/*
+ * Returns the day of the week or raises error if a date can't be
+ * calculated.
+ */
 func Date(year int, month, date int8, calType string) (day string, err error) {
     calType = strings.ToUpper(calType)
     check := isRealDate(year, month, date, calType)
