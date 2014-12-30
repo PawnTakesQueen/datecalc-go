@@ -8,7 +8,7 @@ Go package to calculate the day of the week of any date
 ####Dependencies
 * Go
 
-####Using the Library
+####Using the Package
 func Date(year int, month, date int8, calType string) (day string, err error)
 
 To calculate the day of the week for any date, use *datecalc.Date(y, m, d, t)* where y is the full year (a negative integer for BC years), m is the month number, d is the day number, and type is the calendar type.  The calendar types you have to chose from are:
