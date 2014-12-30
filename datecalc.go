@@ -26,7 +26,7 @@
  
 /* A Library to Calculate the Day of the Week of Any Date */
 
-/* Version 1.0.3.5 */
+/* Version 1.0.3.6 */
 
 package datecalc
 
@@ -145,11 +145,11 @@ func isRealDate(year int, month, date int8, calType string) bool {
         }
     }
     if calType == "ENGLISH" {
-        if month == 9 && date > 2 && date < 15 && year == 1752 {
+        if month == 9 && date > 2 && date < 14 && year == 1752 {
             return false
         }
     } else if calType == "ROMAN" {
-        if month == 10 && date > 4 && date < 16 && year == 1582 {
+        if month == 10 && date > 4 && date < 15 && year == 1582 {
             return false
         }
     }
