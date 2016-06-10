@@ -1,7 +1,7 @@
 datecalc-go
 ========
 
-datecalc is created by Vi Grey ([http://pariahvi.com](http://pariahvi.com)) and is licensed under a BSD 2-Clause License. Read LICENSE.txt for more license text.
+datecalc is created by Vi Grey (https://vigrey.com) <vi@vigrey.com> and is licensed under a BSD 2-Clause License. Read LICENSE.txt for more license text.
 
 Go package to calculate the day of the week of any date
 

@@ -1,4 +1,4 @@
-/* Copyright (C) 2012-2014, PariahVi
+/* Copyright (C) 2012-2014, Vi Grey
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -26,7 +26,7 @@
  
 /* A Library to Calculate the Day of the Week of Any Date */
 
-/* Version 1.0.3.6 */
+/* Version 1.0.3.7 */
 
 package datecalc
 
